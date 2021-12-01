@@ -1,6 +1,7 @@
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const mf = require('@angular-architects/module-federation/webpack');
 const path = require('path');
+const manifest = require('./mfes/manifest.js');
 
 /**
  * We use the NX_TSCONFIG_PATH environment variable when using the @nrwl/angular:webpack-browser
@@ -43,10 +44,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {
-        login: 'login@http://localhost:4201/remoteEntry.mjs',
-        todo: 'todo@http://localhost:4202/remoteEntry.js',
-      },
+      remotes: manifest.remotes,
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
         '@angular/common': { singleton: true, strictVersion: true },

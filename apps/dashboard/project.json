@@ -41,6 +41,10 @@
             {
               "replace": "apps/dashboard/src/environments/environment.ts",
               "with": "apps/dashboard/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "apps/dashboard/mfes/manifest.js",
+              "with": "apps/dashboard/mfes/manifest.prod.js"
             }
           ],
           "outputHashing": "all",
