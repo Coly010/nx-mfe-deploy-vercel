@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/todo/list",
+  "sourceRoot": "libs/todo/list/src",
+  "prefix": "ng-mfe",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/todo/list"],
+      "options": {
+        "jestConfig": "libs/todo/list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/todo/list/src/**/*.ts",
+          "libs/todo/list/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

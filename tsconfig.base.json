@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ng-mfe/login/login": ["libs/login/login/src/index.ts"],
-      "@ng-mfe/shared/auth": ["libs/shared/auth/src/index.ts"]
+      "@ng-mfe/shared/auth": ["libs/shared/auth/src/index.ts"],
+      "@ng-mfe/todo/list": ["libs/todo/list/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
