@@ -45,7 +45,7 @@ module.exports = {
     new ModuleFederationPlugin({
       remotes: {
         login: `promise new Promise(async resolve => {
-          const url = await fetch("/assets/manifest.json").then(response => response.json()).remotes.login;
+          const url = (await fetch("/assets/manifest.json").then(response => response.json())).remotes.login;
           const script = document.createElement('script')
       script.src = url;
       script.onload = () => {
@@ -66,7 +66,7 @@ module.exports = {
       document.head.appendChild(script);
         })`,
         todo: `promise new Promise(async resolve => {
-          const url = await fetch("/assets/manifest.json").then(response => response.json()).remotes.todo;
+          const url = (await fetch("/assets/manifest.json").then(response => response.json())).remotes.todo;
           const script = document.createElement('script')
       script.src = url;
       script.onload = () => {

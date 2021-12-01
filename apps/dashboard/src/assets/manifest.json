@@ -1,6 +1,6 @@
 {
   "remotes": {
-    "login": "login@http://localhost:4201/remoteEntry.mjs",
-    "todo": "todo@http://localhost:4202/remoteEntry.js"
+    "login": "https://nx-mfe-deploy-vercel-login.vercel.app/remoteEntry.mjs",
+    "todo": "https://nx-mfe-deploy-vercel-todo.vercel.app/remoteEntry.js"
   }
 }

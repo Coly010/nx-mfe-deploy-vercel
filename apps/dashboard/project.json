@@ -41,10 +41,6 @@
             {
               "replace": "apps/dashboard/src/environments/environment.ts",
               "with": "apps/dashboard/src/environments/environment.prod.ts"
-            },
-            {
-              "replace": "apps/dashboard/src/assets/manifest.json",
-              "with": "apps/dashboard/src/assets/manifest.prod.json"
             }
           ],
           "outputHashing": "all",
