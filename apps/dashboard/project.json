@@ -43,8 +43,8 @@
               "with": "apps/dashboard/src/environments/environment.prod.ts"
             },
             {
-              "replace": "apps/dashboard/mfes/manifest.js",
-              "with": "apps/dashboard/mfes/manifest.prod.js"
+              "replace": "apps/dashboard/src/assets/manifest.json",
+              "with": "apps/dashboard/src/assets/manifest.prod.json"
             }
           ],
           "outputHashing": "all",

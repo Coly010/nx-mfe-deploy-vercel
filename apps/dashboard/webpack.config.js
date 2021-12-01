@@ -1,7 +1,6 @@
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const mf = require('@angular-architects/module-federation/webpack');
 const path = require('path');
-const manifest = require('./mfes/manifest.js');
 
 /**
  * We use the NX_TSCONFIG_PATH environment variable when using the @nrwl/angular:webpack-browser
@@ -44,7 +43,50 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: manifest.remotes,
+      remotes: {
+        login: `promise new Promise(async resolve => {
+          const url = await fetch("/assets/manifest.json").then(response => response.json()).remotes.login;
+          const script = document.createElement('script')
+      script.src = url;
+      script.onload = () => {
+        // the injected script has loaded and is available on window
+        // we can now resolve this Promise
+        const proxy = {
+          get: (request) => window.login.get(request),
+          init: (arg) => {
+            try {
+              return window.login.init(arg)
+            } catch(e) {
+              console.log('remote container already initialized')
+            }
+          }
+        }
+        resolve(proxy)
+      }
+      document.head.appendChild(script);
+        })`,
+        todo: `promise new Promise(async resolve => {
+          const url = await fetch("/assets/manifest.json").then(response => response.json()).remotes.todo;
+          const script = document.createElement('script')
+      script.src = url;
+      script.onload = () => {
+        // the injected script has loaded and is available on window
+        // we can now resolve this Promise
+        const proxy = {
+          get: (request) => window.todo.get(request),
+          init: (arg) => {
+            try {
+              return window.todo.init(arg)
+            } catch(e) {
+              console.log('remote container already initialized')
+            }
+          }
+        }
+        resolve(proxy)
+      }
+      document.head.appendChild(script);
+        })`,
+      },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
         '@angular/common': { singleton: true, strictVersion: true },
