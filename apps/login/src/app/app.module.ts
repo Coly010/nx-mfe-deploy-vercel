@@ -17,11 +17,17 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot(
       [
         {
-          path: 'remote',
-          loadChildren: () =>
-            import('./remote-entry/entry.module').then(
-              (m) => m.RemoteEntryModule
-            ),
+          path: '',
+          children: [
+            { path: '', redirectTo: 'remote', pathMatch: 'full' },
+            {
+              path: 'remote',
+              loadChildren: () =>
+                import('./remote-entry/entry.module').then(
+                  (m) => m.RemoteEntryModule
+                ),
+            },
+          ],
         },
       ],
       { initialNavigation: 'enabledBlocking' }
