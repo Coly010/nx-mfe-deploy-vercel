@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/login/login",
+  "sourceRoot": "libs/login/login/src",
+  "prefix": "ng-mfe",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/login/login"],
+      "options": {
+        "jestConfig": "libs/login/login/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/login/login/src/**/*.ts",
+          "libs/login/login/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

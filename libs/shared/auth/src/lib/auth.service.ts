@@ -12,6 +12,8 @@ export class AuthService {
   login({ username, password }: { username: string; password: string }) {
     if (password === 'password') {
       this._activeUser.next({ username });
+      return true;
     }
+    return false;
   }
 }

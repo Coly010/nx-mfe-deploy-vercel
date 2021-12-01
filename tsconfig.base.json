@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ng-mfe/login/login": ["libs/login/login/src/index.ts"],
       "@ng-mfe/shared/auth": ["libs/shared/auth/src/index.ts"]
     }
   },
