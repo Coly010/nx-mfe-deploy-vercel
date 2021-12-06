@@ -30,7 +30,6 @@ module.exports = {
   output: {
     uniqueName: 'dashboard',
     publicPath: 'auto',
-    scriptType: 'text/javascript',
   },
   optimization: {
     runtimeChunk: false,
@@ -41,51 +40,14 @@ module.exports = {
       ...sharedMappings.getAliases(),
     },
   },
+  experiments: {
+    outputModule: true,
+  },
   plugins: [
     new ModuleFederationPlugin({
       remotes: {
-        login: `promise new Promise(async resolve => {
-          const url = (await fetch("/assets/manifest.json").then(response => response.json())).remotes.login;
-          const script = document.createElement('script')
-      script.src = url;
-      script.onload = () => {
-        // the injected script has loaded and is available on window
-        // we can now resolve this Promise
-        const proxy = {
-          get: (request) => window.login.get(request),
-          init: (arg) => {
-            try {
-              return window.login.init(arg)
-            } catch(e) {
-              console.log('remote container already initialized')
-            }
-          }
-        }
-        resolve(proxy)
-      }
-      document.head.appendChild(script);
-        })`,
-        todo: `promise new Promise(async resolve => {
-          const url = (await fetch("/assets/manifest.json").then(response => response.json())).remotes.todo;
-          const script = document.createElement('script')
-      script.src = url;
-      script.onload = () => {
-        // the injected script has loaded and is available on window
-        // we can now resolve this Promise
-        const proxy = {
-          get: (request) => window.todo.get(request),
-          init: (arg) => {
-            try {
-              return window.todo.init(arg)
-            } catch(e) {
-              console.log('remote container already initialized')
-            }
-          }
-        }
-        resolve(proxy)
-      }
-      document.head.appendChild(script);
-        })`,
+        login: `https://nx-mfe-deploy-vercel-login.vercel.app/remoteEntry.mjs`,
+        todo: `https://nx-mfe-deploy-vercel-todo.vercel.app/remoteEntry.js`,
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
@@ -94,6 +56,7 @@ module.exports = {
         '@angular/router': { singleton: true, strictVersion: true },
         ...sharedMappings.getDescriptors(),
       },
+      library: { type: 'module' },
     }),
 
     sharedMappings.getPlugin(),

@@ -30,7 +30,6 @@ module.exports = {
   output: {
     uniqueName: 'todo',
     publicPath: 'auto',
-    scriptType: 'text/javascript',
   },
   optimization: {
     runtimeChunk: false,
@@ -40,6 +39,9 @@ module.exports = {
     alias: {
       ...sharedMappings.getAliases(),
     },
+  },
+  experiments: {
+    outputModule: true,
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -55,6 +57,7 @@ module.exports = {
         '@angular/router': { singleton: true, strictVersion: true },
         ...sharedMappings.getDescriptors(),
       },
+      library: { type: 'module' },
     }),
     sharedMappings.getPlugin(),
   ],
